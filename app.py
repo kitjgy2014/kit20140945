@@ -8,6 +8,11 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     return '안녕하세요.'
+@app.route('/getinfo')
+def getinfo():
+    with open('static/save.txt','r',encoding='utf-8') as file:
+        student = file.read().split(',')
+    return '번호 : {}, 이름 : {}'.format(student[0], student[1])
 #네이버
 @app.route('/naver')
 def naver():
@@ -35,21 +40,16 @@ def login():
 @app.route('/method', methods=['GET', 'POST'])    
 def method():
     if request.method == 'GET':
-        return "GET으로 전달된 데이터"
+        id = request.args['id']
+        pw = request.args['pw']
+
+        return "GET으로 전달된 데이터({},{})".format(id,pw)
      
     else:
         id = request.form['id']
         pw = request.form['pw']
-        
-        if (id == 'aaa' and pw == '1234'):
-            print(id, pw)
-            root= Tk()
-            root.withdraw()
-            return msg.showinfo('반갑습니다!' ,'아이디: {} 패스워드: {}'.format(id, pw))
-        else:
-            root= Tk()
-            root.withdraw()
-            return msg.showinfo("로그인 불가", "ID,PW를 확인해주세요.")
-
+        with open('static/save.txt','w', encoding='utf-8') as f:
+            f.write('%s,%s' % (id, pw))
+        return 'POST로 전달된 데이터({}, {})'.format(id,pw)
 if __name__ == '__main__':
     app.run(debug=True)
