@@ -61,16 +61,11 @@ def form():
 @app.route('/method', methods=['GET', 'POST'])    
 def method():
     if request.method == 'GET':
-        id = request.args['id']
-        pw = request.args['pw']
-
-        return "GET으로 전달된 데이터({},{})".format(id,pw)
+        return "GET으로 전송이다."
      
     else:
-        id = request.form['id']
-        pw = request.form['pw']
-        with open('static/save.txt','w', encoding='utf-8') as f:
-            f.write('%s,%s' % (id, pw))
-        return 'POST로 전달된 데이터({}, {})'.format(id,pw)
+        num = request.form['num']
+        name = request.form['name']
+        return 'POST이다. 학번은 :({}, {})'.format(num,name)
 if __name__ == '__main__':
     app.run(debug=True)
