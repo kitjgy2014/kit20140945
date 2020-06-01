@@ -1,9 +1,10 @@
 from tkinter import messagebox as msg
 from tkinter import Tk
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template,session, redirect, url_for
+import dbdb
 app = Flask(__name__)
 
-
+app.secret_key = b'aaa!111/'
 
 @app.route('/')
 def hello():
@@ -32,10 +33,30 @@ def url_test():
 def url_daum():
     return redirect(url_for('daum'))
 #로그인
-@app.route('/login')
+@app.route('/login', methods = ['GET','POST'])
 def login():
-    return render_template('login.html')
-
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        id = request.form['id']
+        pw = request.form['pw']
+        if id == 'abc' and pw == '1234':
+            session['user']=id
+            return '''
+                <script> alert("안녕하세요~{}님");
+                location.href="/form"
+                </script>
+            '''.format(id)
+        else:
+            return "아이디 또는 패스워드를 확인 하세요"        
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('form'))
+@app.route('/form')
+def form():
+    if 'user' in session:
+        return render_template('test.html')
 
 @app.route('/method', methods=['GET', 'POST'])    
 def method():
