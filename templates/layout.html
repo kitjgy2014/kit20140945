@@ -8,8 +8,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <title>{% block title %}{% endblock %} - 20140945정건영</title>
-  {%endblcok %}
+  <title>{% block title %}메인페이지{% endblock %} - 20140945정건영</title>
+  {% endblock %}
 </head>
 <body>
 
@@ -23,7 +23,7 @@
       <a class="nav-link" href="/">메인</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{url_for('game')}}">게임</a>
+      <a class="nav-link" href="{{url_for('gamemain')}}">게임</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{url_for('join')}}">회원가입</a>
@@ -31,7 +31,7 @@
   </ul>
 </nav>
 <div class="container-fluid">
-    <div id="content">{% blcok content %}{% endblock %}</div>
+    <div id="content">{% block content %}{% endblock %}</div>
 </div>
 
 </body>

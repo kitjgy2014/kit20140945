@@ -1,20 +1,21 @@
-from tkinter import messagebox as msg
-from tkinter import Tk
-from flask import Flask, request, render_template,session, redirect, url_for
-import dbdb
+from flask import Flask, request ,redirect, render_template, url_for , abort, session
 app = Flask(__name__)
+
+import game
+import json
+import random
+import dbdb
 
 app.secret_key = b'aaa!111/'
 
 @app.route('/')
 def hello():
     return render_template("main.html")
-@app.route('/game')
-def game():
-    return render_template('game.html')
+
 @app.route('/join')
 def join():
     return render_template('test.html')
+
 @app.route('/form') 
 def form(): 
     if 'user' in session: 
@@ -40,6 +41,31 @@ def getinfo():
     return retstr
 
 
+@app.route('/gamemain')
+def gamemain():
+    return render_template('game.html')
+
+@app.route('/gamestart')
+def gamestart():
+    with open('save.txt','r', encoding='utf-8') as f:
+         date = f.read()
+         character = json.loads(date)
+         print(character)
+    return render_template('stage1.html', data=character)
+@app.route('/input/<int:num>')
+def one_num(num):
+    if num == 1:
+        return render_template('stage1-1.html')
+    elif num == 2:
+        return render_template('stage1-2.html')
+    elif num == 3:
+        return render_template('stage2-1.html')
+    elif num == 4:
+        return render_template('stage2-2.html')
+
+@app.route('/stagetwo')
+def stagetwo():
+    return render_template('stage2.html')
 #네이버
 @app.route('/naver')
 def naver():
@@ -66,14 +92,15 @@ def login():
     else: 
         id = request.form['id'] 
         pw = request.form['pw'] 
-        if id == 'abc' and pw == '1234': 
-            session['user'] = id 
-            return ''' 
-               <script> alert("안녕하세요~ {}님"); 
-               location.href="/form" 
-               </script> '''.format(id) 
-        else: 
-            return "아이디 또는 패스워드를 확인 하세요." 
+        print (id,type(id))
+        print (pw,type(pw))
+        ret = dbdb.select_user(id,pw)
+        print(ret[2])
+        if ret != None:
+            session['user'] = id
+            return redirect(url_for('index'))
+        else:
+            return redirect(url_for('login'))
             # 로그아웃(session 제거) 
 @app.route('/logout') 
 def logout(): 

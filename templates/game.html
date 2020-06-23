@@ -4,10 +4,7 @@
    {{ super() }} 
 {% endblock %} 
 {% block content %}
-     <h2>게임</h2> 게임을 시작 합니다. 
-     <form action="/setchar" method="POST"> 
-        <label for="fname">이름 입력 :</label> 
-        <input type="text" id="fname" name="name"><br> 
-        <input type="submit" value="확인"> 
-    </form> 
+     <h2>시나리오 게임</h2>
+     <p>주어진 이벤트를 상황에 맞게 선택하세요!</p> 
+     <a href="/gamestart">시작하기</a>
 {% endblock %}

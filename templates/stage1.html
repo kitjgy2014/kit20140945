@@ -1,0 +1,14 @@
+{% extends "layout.html" %} 
+{% block title %}STAGE1{% endblock %} 
+{% block head %}
+   {{ super() }} 
+{% endblock %} 
+{% block content %}
+     <h2>어머님이 라면심부름을 시키셨습니다 수락하시겠습니까?</h2>
+     <a href={{ url_for('one_num', num=1)}}>1.간다</a><br>
+     <a href={{ url_for('one_num', num=2)}}>2.안간다</a> 
+     
+
+     
+  
+{% endblock %}
