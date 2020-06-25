@@ -1,0 +1,15 @@
+{% extends "layout.html" %} 
+{% block title %}STAGE 4{% endblock %} 
+{% block head %}
+   {{ super() }} 
+{% endblock %} 
+{% block content %}
+     <h2>처음 마주쳣던 양아치를 다시 만났습니다! 무엇을 하시겠습니까?</h2>
+     <a href={{ url_for('one_num', num=8)}}>1.막고라</a><br>
+     <a href={{ url_for('one_num', num=9)}}>2.도망을 친다</a>
+     <img src="static/img/mak.jpg"> 
+     
+
+     
+  
+{% endblock %}

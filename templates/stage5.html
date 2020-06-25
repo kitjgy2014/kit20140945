@@ -1,0 +1,14 @@
+{% extends "layout.html" %} 
+{% block title %}STAGE 5{% endblock %} 
+{% block head %}
+   {{ super() }} 
+{% endblock %} 
+{% block content %}
+     <a href={{ url_for('one_num', num=10)}}>1. 4000</a><br>
+     <a href={{ url_for('one_num', num=11)}}>2. 3000</a><br>
+     <a href={{ url_for('one_num', num=12)}}>3. 2000</a>
+     <a href={{ url_for('one_num', num=13)}}>4. 이건내꺼야</a>
+
+<img src="static/img/home.jpg">
+         
+{% endblock %}

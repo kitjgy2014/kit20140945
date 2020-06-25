@@ -62,10 +62,37 @@ def one_num(num):
         return render_template('stage2-1.html')
     elif num == 4:
         return render_template('stage2-2.html')
+    elif num == 5:
+        return render_template('stage3-1.html')
+    elif num == 6:
+        return render_template('stage3-2.html')
+    elif num == 7:
+        return render_template('stage3-3.html')
+    elif num == 8:
+        return render_template('stage4-1.html')
+    elif num == 9:
+        return render_template('stage4-2.html')
+    elif num == 10:
+        return render_template('final1.html')
+    elif num == 11:
+        return render_template('final2.html')
+    elif num == 12:
+        return render_template('final3.html')
+    elif num == 13:
+        return render_template('final4.html')
 
 @app.route('/stagetwo')
 def stagetwo():
     return render_template('stage2.html')
+@app.route('/stage3')
+def stage3():
+    return render_template('stage3.html')
+@app.route('/stage4')
+def stage4():
+    return render_template('stage4.html')
+@app.route('/stage5')
+def stage5():
+    return render_template('stage5.html')
 #네이버
 @app.route('/naver')
 def naver():

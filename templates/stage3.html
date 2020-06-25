@@ -1,0 +1,15 @@
+{% extends "layout.html" %} 
+{% block title %}STAGE 3{% endblock %} 
+{% block head %}
+   {{ super() }} 
+{% endblock %} 
+{% block content %}
+     <h2>마트에 도착 했습니다. 무슨 라면을 사시겠습니까?</h2>
+     <a href={{ url_for('one_num', num=5)}}>1. 남자를 울리는 그맛 신라면</a><br>
+     <a href={{ url_for('one_num', num=6)}}>2. 무난한 진라면</a><br>
+     <a href={{ url_for('one_num', num=7)}}>3. 오늘은 내가 짜파게티 요리사</a> 
+     <img src="static/img/rj.jpg">
+
+     
+  
+{% endblock %}
